@@ -3,23 +3,28 @@
 from colr import color
 from random import randint
 import colourpalette
+import time
 
 # Global var (Matrix)
 matrix = 0
 rows, cols = (15, 15)
 palette = colourpalette.ColourPalette()
 
+# Creates a 2B matrix and writes it's last row with the number 36
 def initMatrix():
     matrix = [[0 for i in range(cols)] for j in range(rows)]
     for i in range(15):
         matrix[14][i] = 36
     return matrix
 
-# Put inside function
-matrix = initMatrix()
+# Gives the matrix variable the full 2B matrix
+def initializer():
+    matrix = initMatrix()
+    return matrix
+initializer()
 
+# (Needs refactoring) Adds a random number from 0 to 5 to the values inside the matrix.
 def calcMatrixVal():
-
     m = [[0 for i in range(cols)] for j in range(rows)]
 
     for i in range(15):
@@ -32,33 +37,36 @@ def calcMatrixVal():
                 m[i][j] = 36
     return m
 
-matrix = calcMatrixVal()
+#matrix = calcMatrixVal()
 
 # Gives colour based on the index value
-def giveColours(matrix):
-    for k in range(36):
-        if matrix[i][j] == k:
-            print(color("  ", fore=(0,0,0), back=palette.get_colour(k)), end="")
+def giveColours(letteri, letterj):
+    #for k in range(36):
+    if matrix[letteri][letterj] != 36:
+        print(color("  ", fore=(0,0,0), back=palette.get_colour(matrix[letteri][letterj])), end="")
+    elif matrix[letteri][letterj] == 36:
+        print(color("  ", fore=(0,0,0), back=palette.get_colour(36)), end="")
 
-# Render colours.
-for i in range(15):
-    for j in range(15):
 
-        # This prints the numbered matrix with a colored font.
-        #print(color(matrix[i][j], fore=(203, 74, 65)), end = " ")
-
-        # This prints a matrix of colored squares.
-        #print(color("  ", fore=(0,0,0), back=(203, 74, 65)), end = "")
-
-        #if matrix[i][j] >= 30:
-        #    print(color(matrix[i][j], fore=(0,0,0), back=palette.get_colour(i)), end = " ")
-        #else:
-        #    print(color(matrix[i][j], fore=(0,0,0), back=palette.get_colour(j)), end = " ")
-
-        # The function get_colour prints a color of my choice, based on it's index on the array. The function get_colours prints all colours.
-        #print(color("REPETITION NUMBER: i:{} j:{}".format(i, j), fore=(255,0,0)), palette.get_colour(0))
-
-        giveColours(matrix)
-
+# Renders colours
+def printColours():
+    for i in range(15):
+        for j in range(15):
+            giveColours(i, j)
+        print("")
     print("")
-print("")
+
+# Calls the render and updates the matrix in a loop
+for m in range(3):
+    matrix = calcMatrixVal()
+    printColours()
+
+# Useful information:
+
+# This prints the numbered matrix with a colored font.
+#print(color(matrix[i][j], fore=(203, 74, 65)), end = " ")
+
+# This prints a matrix of colored squares.
+#print(color("  ", fore=(0,0,0), back=(203, 74, 65)), end = "")
+
+# The function get_colour prints a color of my choice, based on it's index on the array. The function get_colours prints all colours.
