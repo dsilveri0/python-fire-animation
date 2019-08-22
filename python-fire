@@ -23,7 +23,9 @@ def calcMatrixVal():
             if matrix[i][j] > 36:
                 matrix[i][j] = 36
     return matrix
-#matrix = calcMatrixVal()
+
+# This updates the numbers on the matrix so every time we render the fire it has a diferent pattern
+matrix = calcMatrixVal()
 
 # Gives colour based on the index value
 def giveColours(letteri, letterj):
@@ -39,44 +41,26 @@ def printColours():
             giveColours(i, j)
         print("")
     print("")
-#printColours()
 
-# Calls the render and updates the matrix in a loop
-#for m in range(3):
-matrix = calcMatrixVal()
-#    printColours()
-
+# Uses ANSI escape sequences to move the cursor to it's initial position
 def move_cursor(n):
     print("\x1b[{}A".format(n)) # n + 1
 
+# Uses ANSI escape sequences to clear the screen
 def clear():
     print("\x1b[2J")
 
-#for m in range(5):
-#    clear()
-#    printColours()
-#    move_cursor(17)
-#    sleep(0.2)
-#    matrix = calcMatrixVal()
-#    printColours()
-#    sleep(0.1)
-#    clear()
-#    move_cursor(18)
-#    matrix = calcMatrixVal()
-#    printColours()
-#    sleep(0.1)
-#    move_cursor(19)
-#    matrix = calcMatrixVal()
-
+# Function that clears the terminal and moves the cursor to the right position for next print
 def fireAnimation():
     clear()
     printColours()
     move_cursor(17)
-    sleep(0.1)
+    sleep(0.09)
     printColours()
-    sleep(0.1)
+    sleep(0.09)
     move_cursor(18)
 
-for m in range(100):
+# Loops the function that creates the fire animation and also the function that updates the "fire"
+for m in range(1000):
     matrix = calcMatrixVal()
     fireAnimation()
