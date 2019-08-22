@@ -52,18 +52,31 @@ def move_cursor(n):
 def clear():
     print("\x1b[2J")
 
-for m in range(5):
+#for m in range(5):
+#    clear()
+#    printColours()
+#    move_cursor(17)
+#    sleep(0.2)
+#    matrix = calcMatrixVal()
+#    printColours()
+#    sleep(0.1)
+#    clear()
+#    move_cursor(18)
+#    matrix = calcMatrixVal()
+#    printColours()
+#    sleep(0.1)
+#    move_cursor(19)
+#    matrix = calcMatrixVal()
+
+def fireAnimation():
     clear()
     printColours()
     move_cursor(17)
-    sleep(0.2)
-    matrix = calcMatrixVal()
+    sleep(0.1)
     printColours()
     sleep(0.1)
-    clear()
     move_cursor(18)
+
+for m in range(100):
     matrix = calcMatrixVal()
-    printColours()
-    sleep(0.1)
-    move_cursor(19)
-    matrix = calcMatrixVal()
+    fireAnimation()
