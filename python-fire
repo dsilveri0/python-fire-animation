@@ -7,14 +7,14 @@ from time import sleep
 
 # Global variables (Matrix, Rows/Cols and Palette)
 matrix = 0
-rows, cols = (15, 15)
+rows, cols = (15, 45) # This 45 controls ammount of columns
 palette = colourpalette.ColourPalette()
 
 # Creates the 2B Matrix and adds a random number to each position of it.
 def calcMatrixVal():
     matrix = [[0 for i in range(cols)] for j in range(rows)]
 
-    for i in range(15):
+    for i in range(45): # Controls ammount of columns
         matrix[14][i] = 36
 
     for i in range(1, rows):
@@ -30,14 +30,14 @@ matrix = calcMatrixVal()
 # Gives colour based on the index value
 def giveColours(letteri, letterj):
     if matrix[letteri][letterj] != 36:
-        print(color("  ", fore=(0,0,0), back=palette.get_colour(matrix[letteri][letterj])), end="")
+        print(color(" ", fore=(0,0,0), back=palette.get_colour(matrix[letteri][letterj])), end="")
     elif matrix[letteri][letterj] == 36:
-        print(color("  ", fore=(0,0,0), back=palette.get_colour(36)), end="")
+        print(color(" ", fore=(0,0,0), back=palette.get_colour(36)), end="")
 
 # Renders the colours
 def printColours():
     for i in range(15):
-        for j in range(15):
+        for j in range(45): # Controls ammount of columns
             giveColours(i, j)
         print("")
     print("")
@@ -55,9 +55,9 @@ def fireAnimation():
     clear()
     printColours()
     move_cursor(17)
-    sleep(0.09)
+    sleep(0.08)
     printColours()
-    sleep(0.09)
+    sleep(0.08)
     move_cursor(18)
 
 # Loops the function that creates the fire animation and also the function that updates the "fire"
